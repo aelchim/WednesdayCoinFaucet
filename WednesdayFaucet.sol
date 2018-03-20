@@ -25,6 +25,10 @@ contract WednesdayFaucet is Ownable, Destructible {
     }
 
     function click() public {
+        //require Wednesday(3)
+        uint8 dayOfWeek = uint8((now / 86400 + 4) % 7);
+        require(dayOfWeek == 3);
+
         require(hasElapsed());
 
         require(wednesdayCoin.balanceOf(this) >= amount);
